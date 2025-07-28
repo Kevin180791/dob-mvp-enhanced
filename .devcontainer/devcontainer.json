@@ -1,0 +1,56 @@
+{
+    "name": "DOB-MVP Enhanced Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11",
+    "features": {
+          "ghcr.io/devcontainers/features/node:1": {
+                  "version": "18"
+          },
+          "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+          "ghcr.io/devcontainers/features/git:1": {},
+          "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+          "vscode": {
+                  "extensions": [
+                            "ms-python.python",
+                            "ms-python.flake8",
+                            "ms-python.black-formatter",
+                            "bradlc.vscode-tailwindcss",
+                            "esbenp.prettier-vscode",
+                            "ms-vscode.vscode-json",
+                            "ms-vscode.vscode-typescript-next",
+                            "ms-vscode-remote.remote-containers",
+                            "GitHub.copilot",
+                            "ms-python.pylint"
+                  ],
+                  "settings": {
+                            "python.defaultInterpreterPath": "/usr/local/bin/python",
+                            "python.formatting.provider": "black",
+                            "python.linting.enabled": true,
+                            "python.linting.pylintEnabled": true,
+                            "editor.formatOnSave": true,
+                            "editor.codeActionsOnSave": {
+                                        "source.organizeImports": true
+                            }
+                  }
+          }
+    },
+    "postCreateCommand": "bash .devcontainer/setup.sh",
+    "forwardPorts": [3001, 5173, 8000],
+    "portsAttributes": {
+          "3001": {
+                  "label": "FastAPI Backend",
+                  "onAutoForward": "notify"
+          },
+          "5173": {
+                  "label": "React Frontend",
+                  "onAutoForward": "notify"
+          },
+          "8000": {
+                  "label": "Alternative Backend Port",
+                  "onAutoForward": "notify"
+          }
+    },
+    "remoteUser": "vscode",
+    "workspaceFolder": "/workspaces/dob-mvp-enhanced"
+}
